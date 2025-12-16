@@ -1,1 +1,423 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>핸드메이드 북(Handmade Book) 선언문</title>
 
+  <style>
+    :root{
+      --bg: plum;
+      --text: #111;
+      --line: rgba(0,0,0,0.35);
+      --overlay: rgba(0,0,0,0.22);
+    }
+
+    * { box-sizing: border-box; }
+
+    /* Courier Prime (Latin letters mainly) */
+    @font-face{
+      font-family: "HBText";
+      font-style: normal;
+      font-weight: 400;
+      font-display: swap;
+      src:
+        url("https://cdn.jsdelivr.net/npm/@fontsource/courier-prime@5.1.1/files/courier-prime-latin-400-normal.woff2") format("woff2"),
+        url("https://cdn.jsdelivr.net/npm/@fontsource/courier-prime@5.1.1/files/courier-prime-latin-400-normal.woff") format("woff");
+      unicode-range:
+        U+0041-005A, U+0061-007A,
+        U+0020-002F, U+003A-0040,
+        U+005B-0060, U+007B-007E;
+    }
+    @font-face{
+      font-family: "HBText";
+      font-style: normal;
+      font-weight: 700;
+      font-display: swap;
+      src:
+        url("https://cdn.jsdelivr.net/npm/@fontsource/courier-prime@5.1.1/files/courier-prime-latin-700-normal.woff2") format("woff2"),
+        url("https://cdn.jsdelivr.net/npm/@fontsource/courier-prime@5.1.1/files/courier-prime-latin-700-normal.woff") format("woff");
+      unicode-range:
+        U+0041-005A, U+0061-007A,
+        U+0020-002F, U+003A-0040,
+        U+005B-0060, U+007B-007E;
+    }
+    @font-face{
+      font-family: "HBText";
+      font-style: normal;
+      font-weight: 600;
+      font-display: swap;
+      src:
+        url("https://cdn.jsdelivr.net/npm/@fontsource/courier-prime@5.1.1/files/courier-prime-latin-700-normal.woff2") format("woff2"),
+        url("https://cdn.jsdelivr.net/npm/@fontsource/courier-prime@5.1.1/files/courier-prime-latin-700-normal.woff") format("woff");
+      unicode-range:
+        U+0041-005A, U+0061-007A,
+        U+0020-002F, U+003A-0040,
+        U+005B-0060, U+007B-007E;
+    }
+    @font-face{
+      font-family: "HBText";
+      font-style: normal;
+      font-weight: 800;
+      font-display: swap;
+      src:
+        url("https://cdn.jsdelivr.net/npm/@fontsource/courier-prime@5.1.1/files/courier-prime-latin-700-normal.woff2") format("woff2"),
+        url("https://cdn.jsdelivr.net/npm/@fontsource/courier-prime@5.1.1/files/courier-prime-latin-700-normal.woff") format("woff");
+      unicode-range:
+        U+0041-005A, U+0061-007A,
+        U+0020-002F, U+003A-0040,
+        U+005B-0060, U+007B-007E;
+    }
+
+    /* Gothic A1 (Korean) */
+    @font-face{
+      font-family: "HBText";
+      font-style: normal;
+      font-weight: 400;
+      font-display: swap;
+      src:
+        url("https://cdn.jsdelivr.net/npm/@fontsource/gothic-a1@5.2.8/files/gothic-a1-korean-400-normal.woff2") format("woff2"),
+        url("https://cdn.jsdelivr.net/npm/@fontsource/gothic-a1@5.2.8/files/gothic-a1-korean-400-normal.woff") format("woff");
+      unicode-range: U+1100-11FF, U+3130-318F, U+AC00-D7AF, U+D7B0-D7FF;
+    }
+    @font-face{
+      font-family: "HBText";
+      font-style: normal;
+      font-weight: 600;
+      font-display: swap;
+      src:
+        url("https://cdn.jsdelivr.net/npm/@fontsource/gothic-a1@5.2.8/files/gothic-a1-korean-600-normal.woff2") format("woff2"),
+        url("https://cdn.jsdelivr.net/npm/@fontsource/gothic-a1@5.2.8/files/gothic-a1-korean-600-normal.woff") format("woff");
+      unicode-range: U+1100-11FF, U+3130-318F, U+AC00-D7AF, U+D7B0-D7FF;
+    }
+    @font-face{
+      font-family: "HBText";
+      font-style: normal;
+      font-weight: 700;
+      font-display: swap;
+      src:
+        url("https://cdn.jsdelivr.net/npm/@fontsource/gothic-a1@5.2.8/files/gothic-a1-korean-700-normal.woff2") format("woff2"),
+        url("https://cdn.jsdelivr.net/npm/@fontsource/gothic-a1@5.2.8/files/gothic-a1-korean-700-normal.woff") format("woff");
+      unicode-range: U+1100-11FF, U+3130-318F, U+AC00-D7AF, U+D7B0-D7FF;
+    }
+    @font-face{
+      font-family: "HBText";
+      font-style: normal;
+      font-weight: 800;
+      font-display: swap;
+      src:
+        url("https://cdn.jsdelivr.net/npm/@fontsource/gothic-a1@5.2.8/files/gothic-a1-korean-800-normal.woff2") format("woff2"),
+        url("https://cdn.jsdelivr.net/npm/@fontsource/gothic-a1@5.2.8/files/gothic-a1-korean-800-normal.woff") format("woff");
+      unicode-range: U+1100-11FF, U+3130-318F, U+AC00-D7AF, U+D7B0-D7FF;
+    }
+
+    body{
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: "HBText", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      line-height: 1.75;
+
+      text-align: left;
+      word-break: keep-all;
+      line-break: strict;
+      overflow-wrap: break-word;
+    }
+
+    .page{
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1px 1fr;
+    }
+
+    .left{ padding: 40px; }
+    .right{ padding: 40px; }
+
+    .left-inner{
+      max-width: 630px;
+    }
+
+    /* ✅ Grid에서 텍스트 “잘림/… 느낌” 방지 핵심 */
+    .left, .right, .left-inner{
+      min-width: 0;
+    }
+
+    h1{
+      margin: 0 0 20px;
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+
+    p{ margin: 0 0 14px; }
+    strong{ font-weight: 700; }
+    .spacer{ height: 12px; }
+
+    .center-title{
+      position: fixed;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 100vw;
+      z-index: 50;
+      padding: 0 0.5vw;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .center-title .line{
+      width: 100%;
+      text-align: center;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 1.1;
+      letter-spacing: 2.7em;
+      white-space: normal;
+      overflow-wrap: anywhere;
+      max-width: 100vw;
+      margin: 0 auto;
+    }
+
+    .refs{
+      display: grid;
+      gap: 22px;
+      align-content: start;
+    }
+
+    .ref-card{ width: 100%; }
+
+    .tint-photo{
+      display: block;
+      max-width: 100%;
+      height: auto;
+
+      background: var(--bg);
+      border: 0;
+      filter: grayscale(1) contrast(3) brightness(1);
+      mix-blend-mode: multiply;
+      opacity: 0.9;
+    }
+
+    .ref-frame{
+      background: var(--bg);
+      padding: 6px;
+
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+    }
+
+    .ref-stack{
+      display: grid;
+      gap: 18px;
+      justify-items: center;
+      width: 100%;
+    }
+
+    .invoke{
+      font-weight: 800;
+    }
+
+    @media (max-width: 900px){
+      .page{ grid-template-columns: 1fr; }
+      .divider, .right{ display: none; }
+      .left{ padding: 20px; }
+      .left-inner{ max-width: 100%; }
+      .center-title .line{ letter-spacing: 0.7em; }
+    }
+
+    /* =========================================================
+       ✅ 말줄임표 “완전 금지” (정확히 필요한 것만)
+       - span을 block으로 바꾸지 않음 (중요!)
+       ========================================================= */
+    p, span, .invoke{
+      overflow: visible !important;
+      white-space: normal !important;
+      text-overflow: clip !important;
+      -webkit-line-clamp: unset !important;
+    }
+
+    /* =========================================================
+       ✅ [추가] 이미지 호버 반전 + 클릭 링크용 스타일
+       ========================================================= */
+    .ref-link{
+      display: inline-block;
+      line-height: 0;           /* 이미지 주변 여백/밑줄 느낌 방지 */
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .ref-link:focus-visible{
+      outline: 2px solid rgba(0,0,0,0.55);
+      outline-offset: 4px;
+    }
+    .ref-link:hover .tint-photo,
+    .ref-link:focus-visible .tint-photo{
+      filter: invert(1) grayscale(1) contrast(3) brightness(1);
+    }
+
+    a{
+  color: RoyalBlue;        /* 기본 글자색 */
+   text-decoration: underline;
+}
+
+  </style>
+</head>
+
+<body>
+  <div class="center-title" aria-hidden="true">
+    <div class="line">Handmade book Manifesto</div>
+  </div>
+
+  <main class="page">
+    <article class="left">
+      <div class="left-inner">
+        <h1>핸드메이드 북(Handmade Book) 선언문</h1>
+
+        <p>명칭은 정치성을 띤다. 한번 굳어진 단어는 그 안에 함축된 의미를 보존하고, 우리를 관습적인 사고의 틀에 가둔다. ‘아티스트 북’이라는 단어 역시 그렇다. 이 단어는 여러 방면에서 책을 바라보는 우리의 시야를 한정하고 편협하게 만든다. 용어는 단순한 이름이 아니라 사고의 프레임을 규정하는 장치이며, 우리가 무엇을 볼 수 있고 무엇을 볼 수 없는지 결정하는 무형의 경계선이다. 그렇기에 우리는 단어 그 자체를 의심하고 고찰하여, 시대적 감각과 책임을 반영하는 새로운 어휘로 바꿔나갈 필요가 있다.</p>
+
+        <p>용어로서 ‘아티스트 북’이 문제적인 데에는 여러 이유가 있다. 아티스트 북은 오랫동안 ‘작품으로서의 책’, 즉 책 자체가 자율적인 예술 작품으로 기능하는 방식으로 정의되어 왔다. 큐레이터이자 비평가인 <a href="https://en.wikipedia.org/wiki/Clive_Phillpot">클라이브 필폿(Clive Phillpot)</a>과 1976년 뉴욕에서 설립된 예술 출판 기관 <a href="https://www.printedmatter.org/">프린티드 매터(Printed Matter)</a>등은 이러한 정의를 개념미술의 맥락에서 정립해왔다. 하지만 책에 ‘예술’이라는 딱지를 붙이는 순간, 책은 오히려 전복적인 잠재성을 잃고 일상의 실천으로부터 멀어진다. 책이 원래 지닌 시간성, 접히고 펼쳐지는 물성, 손과 시선이 머무르는 경험의 층위는 희미해지고, ‘예술 작품’이라는 권위 속에서 사로잡힌다. 책은 일상적이고 감각적인 매체이길 멈추고 제도적 승인 아래 정제된 사물처럼 기능하게 된다.</p>
+
+<p>↵</p>
+        <p>이에 나는 ‘아티스트 북’을 대체할 개념으로 ‘핸드메이드 북(Handmade Book)’을 제안한다. 이 개념은 작가 J. R. 카펜터(J. R. Carpenter)가 거대 기업의 플랫폼에 저항하며 제시한 <a href="https://luckysoap.com/handmadeweb/handmadeweb_korean.html">'핸드메이드 웹(Handmade Web)’</a>의 정신을 책의 물성으로 가져온 것이다. 카펜터는 디지털 시대의 웹이 점차 대규모 플랫폼의 획일화된 환경 속에서 개인적 리듬과 손의 개입을 잃어가는 것을 비판하며, 웹을 다시 개인이 직접 제작하고 유지하는 생태계로 회복시키고자 했다. 같은 맥락에서 ‘핸드메이드 북’은 출판을 제도적 생산 체계에서 벗어나 개인의 손과 사고로 수행하는 행위로 본다. 여기서 ‘핸드메이드’는 물리적 수공예의 정교함만을 가리키지 않는다. 그것은 사고와 감각이 직접 개입되는 제작의 방식이며, 책을 다시 사유의 도구로 다루는 태도이며, 출판을 다시 삶과 연결시키기 위한 자율적 실천이다. 핸드메이드북은 예술가의 자격이나 제도적 승인에 의존하지 않으며 누구나 수행할 수 있는 출판 행위를 포괄하는 개념이다.</p>
+
+        <br><br>
+
+        <div class="spacer"></div>
+        <div class="spacer"></div>
+
+        <p><span class="invoke">나는 핸드메이드 북을 소환한다. 창작자를 한정하는 것이 아니라 열린 출판의 주체를 위해.</span> 책을 만드는 주체는 특정한 자격을 갖춘 ‘아티스트’라는 단 한 명의 대상으로 축소되어서는 안 된다. 누구나 자신의 목소리를 종이에 담을 수 있어야 하며, 그 행위 자체가 곧 출판이 되는 열린 주체성을 회복하고자 한다. 출판의 주체가 중요한 것이 아니라 참여의 문제여야 한다. 여기서 핸드메이드는 인쇄 및 제본 시스템의 자동화된 공정에 맡기지 않고 창작자가 전 과정을 주도적으로 통제하고 이해하고 개입하는 태도를 뜻한다. 자격이나 지위가 아닌, 책을 만드는 행위의 주체성이 우선되어야 한다.</p>
+
+        <p><span class="invoke">나는 핸드메이드 북을 소환한다. 소비자 또한 한정하지 않고 ‘누구나 예술을 누려야 한다’는 신념을 지키기 위해.</span> 책은 원래 일상에서 쉽게 접할 수 있는 매체다. 특별한 공간이나 제도적 조건이 없어도 손에 들고 읽을 수 있다는 점에서, 다른 예술 형식보다 접근성이 높다. 이러한 특성은 핸드메이드 북을 더욱 열려 있는 예술 형태로 만든다.
+핸드메이드 북은 독자에게 불필요한 거리를 두지 않는다. 제작자가 책의 구조나 과정 일부를 드러낼 때, 독자는 책을 감상하는 사람으로 머무르는 것이 아니라, 그 구성 방식을 자연스럽게 이해하고 받아들이게 된다. 이는 의도적으로 능동성을 요구하는 것이 아니라, 책이라는 매체가 지닌 친밀성과 일상성이 만들어내는 자연스러운 경험이다. 예술을 특별하게 만들기보다, 일상 속에서 접근할 수 있게 하는 것. 핸드메이드 북은 그런 방식의 예술을 가능하게 한다.
+</p>
+
+        <p><span class="invoke">나는 핸드메이드 북을 소환한다. 지배적 규격에 갇히지 않고 모든 가능성이 열려 있는, 대량생산에 반대되는 비표준적인 책을 지향하기 위해.</span> 매끈하게 재단된 상업 출판물의 획일성은 책을 균질한 상품으로 만든다. 반면 핸드메이드 북은 비표준적인 구조, 예측할 수 없는 형식, 내용에 따라 스스로 변화하는 형태를 옹호한다. 페이지의 크기, 종이의 질감, 책의 두께와 방향조차 내용에 맞추어 새롭게 설계될 수 있다. 표준화된 공정이 삭제해버린 책의 고유한 물성을 되살리는 일, 즉 책을 ‘다시 형태를 가진 존재’로 환원하는 것이 핸드메이드 북의 핵심이다. 이는 산업적 효율성을 거스르는 동시에 사유의 다양성을 복원하는 저항적 태도이다.
+</p>
+
+        <p><span class="invoke">나는 핸드메이드 북을 소환한다. 소비되고 버려지는 판촉물로서의 책을 비판하기 위해.</span> 쉽게 찍어내고 쉽게 버리는 속도의 시대에, 책은 덜 만들어지되 더 질기고 오래가야 한다. 나는 ‘빠름’과 ‘큼’이 미덕인 세상에 맞서, ‘느림’과 ‘작음’이라는 저항의 방식을 제안한다. 이는 단순히 물리적인 제작 시간을 지연시키는 것이 아니라, 사유의 속도를 되찾고, 맥락의 깊이를 회복하고, 책이라는 매체가 지닌 숙성의 시간을 되돌려 놓는 일이다. 과잉 생산되는 소비재로서의 책이 아니라, 충분한 맥락을 담아 오랫동안 기능하는 매체를 지향한다. 오래 읽히는 책, 다시 돌아오는 책, 시간이 책의 일부가 되는 방식의 출판이 필요하다.
+</p>
+
+        <p><span class="invoke">나는 핸드메이드 북을 소환한다. 유통, 접근성, 공동체, 정치성 등 다양한 조건 속에서 작동하는 복합적인 실천으로서의 ‘과정 중심의 출판’을 바라보기 위해.</span> 책은 단순히 결과물로 존재하는 것이 아니라, 만들어지고 유통되며 사람들과 만나는 전 과정 안에서 의미를 생성한다. 출판은 제작자의 손에서 끝나지 않는다. 그것은 유통의 경로, 읽히는 방식, 독자와의 관계, 공동체 속에서 확장되는 담론까지 모두를 포함한 넓은 실천의 영역이다. 핸드메이드 북은 결과물의 미학적 완성도뿐 아니라, 만들어지는 과정의 개입과 흔적, 그리고 책이 전파되는 방식까지를 창작의 일부로 인정한다. 출판은 고립된 행위가 아니라 사회적 관계를 만드는 매듭이며, 핸드메이드 북은 그 관계의 생성을 적극적으로 수용하는 출판이다.
+</p>
+<br><br>
+        <div class="spacer"></div>
+        <p><span class="invoke">핸드메이드 북이 지향하는 출판의 방식</span></p>
+
+        <p>출판을 둘러싼 문제는 제작 기술의 선택만으로 환원되지 않는다. 그것은 어떤 책이 ‘출판물’로 인정되는지, 누가 출판의 주체가 될 수 있는지, 그리고 책이 어떤 경로로 순환해야만 의미를 갖는지에 대한 규칙의 문제이기도 하다. 현대의 출판 시스템은 생산과 소비를 분리하고, 표준화된 절차와 분류 체계를 통해 책을 유통 가능한 형태로 정돈한다. 그 결과 출판은 참여 가능한 행위라기보다 특정한 조건을 충족한 결과물에 부여되는 지위처럼 작동하기도 한다. 핸드메이드 북은 이 구조로부터 한 발 물러나, 출판을 다시 제도 밖에서도 발생할 수 있는 행위로 되돌리고자 한다. </p>
+        <p> 1) 생산의 관점에서: 출판은 형식이 아니라 맥락을 조직하는 실천이다
+핸드메이드 북은 출판을 하나의 고정된 형식이나 산업적 공정으로 보지 않는다. 그것은 각기 다른 지역적 맥락과 기술적 조건 속에서 끊임없이 재구성되는 행위이며, 이러한 재구성의 과정 자체가 출판을 문화적 전략이자 사회적 실천으로 확장시킨다. 동일한 책의 형태를 반복적으로 생산하는 것이 아니라, 매번 다른 조건 속에서 출판이 어떤 방식으로 가능해지는지를 탐색하는 일에 가깝다.
+이 관점에서 중요한 것은 책이 만들어내는 미적 형식 그 자체보다, 책이 어떤 감각을 조직하고 어떤 조건 위에서 성립하며, 어떤 관계의 구조를 형성하는가이다. 출판은 완성된 대상이 아니라, 특정한 조건들이 잠시 엮이며 작동하는 방식으로 이해된다.</p>
+<p>2) 소비의 관점에서: 읽는 행위는 출판 이후가 아니라 출판 안에 있다
+핸드메이드 북에서 독자는 명확하게 규정된 소비 주체로 고정되지 않는다. 책은 판매를 전제로 하지 않을 수도 있고, 소유를 목표로 유통되지 않을 수도 있다. 어떤 책은 건네지고, 교환되고, 잠시 머물렀다 사라지며, 그 과정에서 독자의 위치도 고정되지 않는다.
+이때 읽기란 출판 이후에 덧붙여지는 단계가 아니라, 출판이라는 행위가 계속 작동하도록 만드는 하나의 국면이 된다. 펼치고, 넘기고, 접고, 보관하거나 흘려보내는 행위는 책을 소비하는 방식이라기보다 출판을 다른 방향으로 이어가게 하는 움직임에 가깝다.
+</p>
+<p>
+3) 규격의 관점에서: 표준은 기본값이 아니라 선택지다
+핸드메이드 북은 판형, 제본, 페이지 구성처럼 ‘정상’으로 간주되어 온 규격을 질문한다. 표준은 효율과 관리의 논리 속에서 유용하게 작동하지만, 동시에 책의 형식을 사전에 규정하며 가능한 형태를 좁혀왔다. 핸드메이드 북에서 규격은 반드시 따라야 할 조건이 아니라, 필요에 따라 채택되거나 거부될 수 있는 하나의 선택지다. 책의 구조는 내용과 분리된 외피가 아니라, 의미를 구성하는 조건으로 다시 다뤄진다.
+</p>
+<p>4) 재료의 관점에서: 재료는 선택이 아니라 상황이다
+핸드메이드 북에서 재료는 미리 정해진 기준에 따라 ‘고르는 것’이라기보다, 제작이 이루어지는 조건으로 작동한다. 종이와 잉크, 제본 방식은 의도적으로 선택되기도 하지만, 주어진 환경과 여건, 우연에 의해 결정되기도 한다.
+이 불확실성은 핸드메이드 북이 제도적 생산 체계 바깥에서 출판을 상상한다는 사실과 연결된다. 대량 생산의 공정에서는 배제되는 재료, 효율성의 기준에 맞지 않는 방식, 반복이 어려운 선택들이 그대로 남는다. 재료는 완성도를 증명하는 장치가 아니라, 출판이 어떤 조건 속에서 성립했는지를 드러내는 흔적이 된다.
+</p>
+<p>5) 유통의 관점에서: 모든 책이 시장을 향할 필요는 없다
+핸드메이드 북은 유통을 출판의 필수 조건으로 삼지 않는다. ISBN과 서점 유통을 중심으로 한 구조는 책을 식별하고 순환시키는 데 유용하지만, 그 틀에 들어오지 않는 책들을 주변화하기도 한다. 유통을 전제하지 않는 책, 소규모로 순환되는 책, 특정 공동체 안에서만 기능하는 책 역시 출판의 한 형태일 수 있다. 핸드메이드 북은 이러한 비공식적이고 비가시적인 순환의 층위를 긍정한다.
+</p>
+<p>6) 시간의 관점에서: 책은 빠르게 소진되기보다 오래 작동할 수 있어야 한다
+핸드메이드 북은 속도와 규모를 미덕으로 삼는 출판 환경에 대해 다른 시간성을 제안한다. 덜 만들어지되 더 오래 읽히는 책, 즉각적인 소진을 전제로 하지 않는 책을 지향한다. 이는 제작 시간을 단순히 늘리는 문제가 아니라, 책이 사유를 축적하고 다시 돌아올 수 있는 방식으로 존재하도록 설계하는 일에 가깝다.
+</p>
+<br><br>
+<p>↵</p>
+<p>핸드메이드 북은 출판을 하나의 고정된 장르나 형식으로 규정하기보다, 그 성립 조건과 작동 방식을 다시 살펴보기 위해 사용되는 개념적 장치이다. 이 개념은 명확한 정의를 확정하기보다는, 각기 다른 조건 속에서 반복적으로 다시 쓰일 가능성을 남겨둔다. 핸드메이드 북은 출판을 하나의 결과물이 아니라, 상황에 따라 달라지는 실천으로 바라보기 위한 임시적인 이름이다. 이 이름은 출판이 제도적 틀 안에 한정되지 않고, 다양한 방식으로 계속 발생할 수 있음을 설명하기 위해 사용된다.
+</p>
+<br>
+<p><a href="https://www.instagram.com/yejinbvk">yejin bak, 박예진</a></p>
+<details class="refs-toggle">
+  <summary>참고문헌</summary>
+
+  <div class="refs-content">
+    <p>뤼번 파터르. (2022). <em>디자인 정치학</em>. 고트.</p>
+
+    <p>그륀케, 모리츠. (2025년 8월). <em>아트북 페스티벌의 미래 – 이전에는 페어로 알려진</em>. 더북소사이어티.</p>
+
+    <p>미할리스 피힐러. (2019). <em>출판선언물 출판하기</em>. 미디어버스.</p>
+
+    <p>울리세스 카리온, 기 스크라에넨. (2017). <em>책을 만드는 새로운 예술</em> (임경용, 이한범, 차승은 역). 미디어버스.</p>
+
+    <p>월간미술 편집부. (2025). <em>월간미술</em>.</p>
+
+    <p>민구홍. (2024). <em>「My Handmade Web」</em>. SEM &amp; CORAL.  
+      <a href="http://semacoral.org/features/minguhong-my-handmade-web" target="_blank" rel="noopener noreferrer">
+        http://semacoral.org/features/minguhong-my-handmade-web
+      </a>
+    </p>
+
+    <p>한국디자인사학회. (2023). <em>「갤러리 인터뷰」</em>. 『디자인사학회 뉴스레터 3호』.  
+      <a href="https://designhistory.kr/en/newsletter/newsletter-interview3-gallery" target="_blank" rel="noopener noreferrer">
+        https://designhistory.kr/en/newsletter/newsletter-interview3-gallery
+      </a>
+    </p>
+
+    <p>ARTLECTURE. (2024). <em>「〈‘아티스트 북’은 더 이상 책 만이 아니다〉」</em>.  
+      <a href="https://artlecture.com/article/3214" target="_blank" rel="noopener noreferrer">
+        https://artlecture.com/article/3214
+      </a>
+    </p>
+  </div>
+</details>
+
+   </div>
+    </article>
+
+    <div class="divider" aria-hidden="true"></div>
+
+    <aside class="right" aria-label="참고문헌 영역">
+      <div class="refs">
+        <div class="ref-card ref-frame">
+          <div class="ref-stack">
+
+            
+
+            <a class="ref-link" href="https://en.wikipedia.org/wiki/Clive_Phillpot" target="_blank" rel="noopener noreferrer">
+              <img class="tint-photo" src="clive.jpg" width="400" alt="" />
+            </a>
+
+            <a class="ref-link" href="https://www.printedmatter.org/" target="_blank" rel="noopener noreferrer">
+              <img class="tint-photo" src="printedmatter.jpg" width="400" alt="" />
+            </a>
+
+            <br>
+
+            <a class="ref-link" href="https://luckysoap.com/handmadeweb/handmadeweb_korean.html" target="_blank" rel="noopener noreferrer">
+              <img class="tint-photo" src="handmade.png" width="500" alt="" />
+            </a>
+
+            <a class="ref-link" href="https://thebooksociety.org/1032791015/?idx=92#prod_detail_detail" target="_blank" rel="noopener noreferrer">
+              <img class="tint-photo" src="policics2.jpeg" width="400" alt="" />
+            </a>
+
+            <a class="ref-link" href="https://product.kyobobook.co.kr/detail/S000001927528" target="_blank" rel="noopener noreferrer">
+              <img class="tint-photo" src="politics.jpg" width="200" alt="" />
+            </a>
+
+            <br><br><br><br><br>
+
+            <a class="ref-link" href="https://product.kyobobook.co.kr/detail/S000001987539" target="_blank" rel="noopener noreferrer">
+              <img class="tint-photo" src="noisbn.webp" width="800" alt="" />
+            </a>
+
+            <br><br><br><br><br>
+            <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+        
+              <img class="tint-photo" src="1.jpg" width="300" alt="" />
+            </a>
+
+          </div>
+        </div>
+      </div>
+    </aside>
+  </main>
+</body>
+</html>
